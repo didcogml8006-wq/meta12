@@ -6,6 +6,11 @@
     <title>Document</title>
 </head>
 <body>
+    <!-- 핵심포인트
+     여기에 사용되는 문법은 서버의 폼 전송을 목적으로 함.
+     <form>와 함께 사용되는 <input>의 타입을 이해해야 함.
+     최종적으로 유저의 정보를 서버로 전달하는 동작은 <input type="suvmit" 으로 완성됨.
+    -->
     <h3>폼 태그 예제</h3>
     <form action="">
      <div>
@@ -17,7 +22,9 @@
         <input typ="taxt" id="user-password">
      </div>
     <div>
-        <input type="submit" value="로그인"
+        <!-- 아래 두 코드는 동일한 기능 수행 -->
+        <!-- <input type="submit" value="로그인" -->
+        <button>로그인</button>
     </div>
     </form>
     <form> action=""
@@ -37,7 +44,37 @@
             <inpout type="suvmit" value="주문하기">
             <input type="reset" value="취소하기">
         </div>
+       
     </form>
-    <inpot type="date" min="2026-01-02" max="2026-05-05"
+    <div><input type="date" name="date"></div>
+    <!-- 아래 버튼모양은 suvmit이 아니므로 전송가능이 없음. 그냥 버튼 -->
+    <div><input type="reset" value="나는 바쁨"></div>
+    <!-- button태그는 기본적으로 submit을 포함하고 있음 -->
+    <div><button>나도 버튼</button></div>
+
+    <input type="ftle">
+    <input type="hidden" name="상품id" value="12345">
+    <input type="text" placeholder="여기는 주소를 적어주세요" name="address"
+    <!-- texterea는 입력밥아야할 정보의 양이 많을 때 사용 -->
+    <textarea name="memo" cols="40" rous="4"></textarea>
+
+    <!-- select & option 드롭다운 목록 -->
+    <div>
+        <label for="prod1">상품 선택해주세요</label>
+         <select id="prod1" name="prod1"> 
+             <option value="special_3">선물용 3kg</option>
+             <option value="spcial_5">선물용 5kg</option>
+             <option value="familv_3">가정용 3kg</option>
+             <option value="family_5">가정용 5kg</option>
+       </select>
+    </div>
+<label for="prod1">상품 선택해주세요</label>
+    <select id="prod1" name="prod1"> 
+        <option value="special_3">선물용 3kg</option>
+        <option value="spcial_5">선물용 5kg</option>
+        <option value="familv_3">가정용 3kg</option>
+        <option value="family_5">가정용 5kg</option>
+    </select>
+
 </body>
 </html>
