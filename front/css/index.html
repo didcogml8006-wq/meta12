@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* 요소 선택자 */
+     div {
+         background-color: dodgerblue;
+        }
+        /* 클레스 선택자 */
+        .a1 {
+            background-color: antiquewhite;
+        /* 아이디 선택자 */
+        }
+        #id100{
+            background-color: darkslategrey;
+        }
+        /* 아이디가 id100 이고 클래스가 a1인 요소(두개를 모두 가진 요소) */
+        #id100.al {
+            background-color: blueviolet;
+        }
+        .temp{
+            /* 가장 우선순위가 높은 !importent 사용법 */
+            /* 충돌의 해결할 수 있는 최후의 수단 */
+            color: violet !important;
+        }
+        input[type="text"] {
+            border: 2px solid brown;
+        }
+        [date-custom="mystyle1"] {
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <div>div 요소 입니다.</div>
+    <P>P 요소 입니다.</P>
+    <p class="a1">클레스가 a1 입니다.</p>
+    <p class="a2">클레스가 a2 입니다.</p>
+    <p id="id100" class="a1">id가 100입니다.</p>
+    <p id="id200" class="a1">id가 200입니다.</p>
+    <article class="al">나는 아티클 클래스는 a1 입니다.</article>
+    <P class="text" style="border: 1px solid black;">인라인 스타일 입니다.</P>
+    <form>
+        <p><input type="text"></p>
+         <p><input type="password"></p>
+         <p sata-custom="mystyle2">대신 data-**** 형태 권장</p>
+    </form>
+</body>
+</html>
