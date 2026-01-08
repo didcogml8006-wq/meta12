@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            height: 2000px;
+        }
+        .box {
+            width: 300px;
+            padding: 20px;
+            border: 2px solid violet;
+            color: white
+            font-weight: bold;
+        }
+        .static {
+            background-color: darkblue;
+        }
+        .sticky { 
+            background-color: darkgray; 
+            position: sticky;
+            top:0px;
+            z-index:10;
+            spacity:0.9;
+            
+        .fixed {
+            background-color: cornflowerblue;
+            position: flxed
+            bottom: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 150px;
+            border-radius: 10px;
+            box-shsdow: 3px 3px 5px rgba(0,0,0,0,3);
+        }
+    </style>
+</head>
+<body>
+    <h1>position 속성 예제 - static, fixed, sticky</h1>
+    <div class="box static">static (기본)</div>
+     <div class="box static">sticky (특정위치에고정)</div>
+      <div class="content">스크롤을 이용하여 화면을 내려주세요.
+         <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+      </div>
+       <div class="box fixed">fixed (포스트잇)</div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Flexbox 대시보드 레이아웃</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {}
+
+      /* 전체 대시보드 */
+      .dashboard {
+         background-color:lightgray 
+          
+      }
+
+      /* 왼쪽 네비게이션 */
+      .nav {
+         background-color:midnightblue
+         width: 400px;
+         height: 100px;
+         #margin{margin:50px; }
+      }
+      
+       
+
+      /* 오른쪽 전체 영역 */
+      .right {
+         background-color:orange
+      }
+
+      /* 상단바 */
+      .topbar {
+         background-color:grey
+         width: 400px;
+         height: 100px;
+         margin-top: 20px;
+      }
+
+      /* 콘텐츠 영역 */
+      .content {
+         background-color:wheat
+      }
+
+      /* 메인 콘텐츠 */
+      .main-content {
+         background-color:whitesmoke
+         width: 400px;
+         height: 100px;
+      }
+
+      /* 서브 패널 */
+      .side-panel {
+         background-color:orange
+         width: 400px;
+         height: 100px;
+         margin-right: auto;
+      }
+
+      /* 하단 정보바 */
+      .status { 
+         background-color:grey
+         width: 400px;
+         height: 100px;
+         margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dashboard">
+      <aside class="nav">왼쪽 네비게이션</aside>
+
+      <div class="right">
+        <header class="topbar">상단바 (검색 / 사용자 정보)</header>
+
+        <main class="content">
+          <section class="main-content">메인 콘텐츠 (차트 / 목록)</section>
+
+          <aside class="side-panel">서브 패널 (알림 / 요약)</aside>
+        </main>
+
+        <footer class="status">하단 정보바</footer>
+      </div>
+    </div>
+  </body>
+</html>
