@@ -11,63 +11,73 @@
         padding: 0;
       }
 
-      body {}
+      body {
+        height: 100w;
+        font-family: sans-serif;
+      }
 
       /* 전체 대시보드 */
       .dashboard {
-         background-color:lightgray 
-          
+        display: flex;
+        height: 100%; /*부모가 100wh(화면높이전체)를 차지하므로 그 공간을 100%를 사용하겠다.*/
       }
 
       /* 왼쪽 네비게이션 */
       .nav {
-         background-color:midnightblue
-         width: 400px;
-         height: 100px;
-         #margin{margin:50px; }
+        /* flex: 0 0 220px; */
+        width: 220;
+        background-color: #271212;
+        color: white;
+        padding: 20px;
       }
-      
-       
 
       /* 오른쪽 전체 영역 */
       .right {
-         background-color:orange
+        display: flex;
+        flex-direction: column;
+        float: 1;
       }
 
       /* 상단바 */
       .topbar {
-         background-color:grey
-         width: 400px;
-         height: 100px;
-         margin-top: 20px;
+        background-color: #485460;
+        height: 60px;
+        padding: 20px;
+        color: white;
       }
 
       /* 콘텐츠 영역 */
       .content {
-         background-color:wheat
+        display: flex;
+        background-color: #d2dae2;
+        flex: 1;
+        gap: 15px;
+        padding: 20px;
       }
 
       /* 메인 콘텐츠 */
       .main-content {
-         background-color:whitesmoke
-         width: 400px;
-         height: 100px;
+        background-color: white;
+        flex: 3;
+        padding: 20px;
       }
 
       /* 서브 패널 */
       .side-panel {
-         background-color:orange
-         width: 400px;
-         height: 100px;
-         margin-right: auto;
+        background-color: #ffa801;
+        flex: 1;
+        padding: 20px;
       }
 
       /* 하단 정보바 */
-      .status { 
-         background-color:grey
-         width: 400px;
-         height: 100px;
-         margin-bottom: 20px;
+      .status {
+        background-color: #808e9b;
+        height: 40px;
+        clear: white;
+        display: flex;
+        /* <아래3줄> 가운데 배치시키는 공식! ! ! */
+        justify-content: center;
+        align-items: center;
       }
     </style>
   </head>

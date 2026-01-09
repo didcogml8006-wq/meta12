@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .account-book {
+            display: grid;
+            /* 4개의 컬럼(열)을 동일한 비율(1fr)로 생성 */
+            grid-template-columns: repeat(7, 1fr);
+            max-width: 600px;
+            border-top: 1px solid gray;
+            border-left: 1px solid gray;
+        }
+        .cell {
+            border-right: 1px solid gray;
+            border-bottom: 1px solid gray;
+            padding: 10px;
+            font-size: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            aspect-ratio: 1 / 1;
+        }
+        .header {
+            background-color: #00aaff;
+            color: white;
+            font-weight: bold;   
+            border-bottom: 2px solid black;   
+        }
+    </style>
+</head>
+<body>
+     <h2>2026년 1월</h2>
+     <div class="account-book">
+        <div class="cell header">일</div>
+        <div class="cell header">월</div>
+        <div class="cell header">화</div>
+        <div class="cell header">수</div>
+        <div class="cell header">목</div>
+        <div class="cell header">금</div>
+        <div class="cell header">토</div>
+
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell number"></div>
+        <div class="cell number">1</div>
+        <div class="cell number">2</div>
+        <div class="cell number">3</div>
+
+        <div class="cell number">4</div>
+        <div class="cell number">5</div>
+        <div class="cell number">6</div>
+        <div class="cell number">7</div>
+        <div class="cell number">8</div>
+        <div class="cell number">9</div>
+        <div class="cell number">10</div>
+
+
+        <div class="cell number">11</div>
+        <div class="cell number">12</div>
+        <div class="cell number">13</div>
+        <div class="cell number">14</div>
+        <div class="cell number">15</div>
+        <div class="cell number">16</div>
+        <div class="cell number">17</div>
+
+
+        <div class="cell number">18</div>
+        <div class="cell number">19</div>
+        <div class="cell number">20</div>
+        <div class="cell number">21</div>
+        <div class="cell number">22</div>
+        <div class="cell number">23</div>
+        <div class="cell number">24</div>
+
+
+        <div class="cell number">25</div>
+        <div class="cell number">26</div>
+        <div class="cell number">27</div>
+        <div class="cell number">28</div>
+        <div class="cell number">29</div>
+        <div class="cell number">30</div>
+        <div class="cell"></div>     
+    </div>
+</body>
+</html>
