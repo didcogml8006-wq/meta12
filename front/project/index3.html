@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>추천 - Healthy Recipes</title>
+  <style>
+    /* 기본 초기화 */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Malgun Gothic", sans-serif; }
+    body { background-color: #dbdbdb; color: #333; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ================= HEADER ================= */
+    header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 60px; background-color: #dbdbdb;
+    }
+    .logo { display: flex; flex-direction: column; align-items: center; text-align: center; line-height: 1.1; }
+    .logo h1 { font-size: 24px; font-weight: 900; font-style: italic; margin-bottom: 2px; }
+    .logo span { font-size: 13px; font-weight: 300; color: #777; letter-spacing: 2px; text-transform: uppercase; }
+
+    nav.menus { display: flex; gap: 20px; }
+    nav.menus a { font-size: 13px; font-weight: bold; color: #000; }
+    nav.menus a.active { color: #03C75A; } 
+
+    .header-right { display: flex; align-items: center; gap: 15px; }
+    .search-bar { 
+      background: #fff; border-radius: 20px; padding: 8px 18px; 
+      border: 1px solid #ccc; display: flex; align-items: center; 
+    }
+    .search-bar input { border: none; outline: none; width: 180px; font-size: 13px; }
+
+    .login-btn {
+      font-size: 13px; font-weight: bold; color: #fff; background-color: #333;
+      padding: 8px 20px; border-radius: 20px;
+    }
+
+    /* ================= MAGAZINE HERO & CATEGORY BOX ================= */
+    .magazine-hero {
+      text-align: center;
+      padding: 100px 20px 40px 20px; 
+      background: #fff;
+      margin: 0 60px;
+      border-radius: 15px 15px 0 0;
+    }
+
+    .magazine-hero h2 {
+      font-size: 56px; font-weight: 900; color: #111;
+      letter-spacing: -1.5px; line-height: 1; margin-bottom: 35px;
+    }
+
+    .magazine-hero p {
+      font-size: 15px; font-weight: 400; color: #888;
+      letter-spacing: 12px; margin-left: 12px; position: relative;
+    }
+
+    /* 한글 3등분 상자 메뉴 */
+    .category-box-container {
+      background: #fff;
+      margin: 0 60px;
+      padding: 20px 60px 70px 60px; 
+      display: flex;
+      justify-content: center;
+    }
+
+    .category-wrapper {
+      display: flex;
+      width: 100%;
+      max-width: 900px;
+      border: 2px solid #333; /* 상자 테두리를 조금 더 명확하게 변경 */
+      border-radius: 0; /* 직각형태로 더 정갈하게 */
+      overflow: hidden;
+    }
+
+    .category-item {
+      flex: 1; 
+      padding: 30px 0;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background-color: #fff;
+      border-right: 1px solid #eee;
+    }
+
+    .category-item:last-child { border-right: none; }
+
+    /* 마우스 올리면 강조 */
+    .category-item:hover { background-color: #f8f8f8; }
+
+    .category-item strong {
+      font-size: 19px; /* 글자 크기 키움 */
+      font-weight: 900; /* 아주 굵게 */
+      color: #222;
+      display: block;
+    }
+
+    /* ================= CONTENT CONTAINER ================= */
+    .container { padding: 40px 60px; background: #fff; margin: 0 60px; border-radius: 0 0 15px 15px; }
+
+    .section-group { margin-bottom: 100px; }
+    .section-title { margin-bottom: 40px; border-bottom: 2px solid #111; padding-bottom: 10px; display: inline-block; }
+    .section-title h3 { font-size: 24px; font-weight: 900; }
+
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 35px; }
+
+    .m-card { cursor: pointer; }
+    .m-img { 
+      width: 100%; height: 260px; background-size: cover; background-position: center; 
+      border-radius: 12px; margin-bottom: 20px; transition: 0.4s;
+      background-color: #f0f0f0;
+    }
+    .m-card:hover .m-img { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    
+    .m-title { font-size: 18px; font-weight: bold; line-height: 1.5; color: #222; }
+    .m-desc { font-size: 14px; color: #777; margin-top: 10px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+    footer { text-align: center; padding: 100px 0; color: #bbb; font-size: 13px; background-color: #dbdbdb; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo">
+      <h1>Healthy Recipes</h1>
+      <span>home-cooked meal</span>
+    </a>
+    <nav class="menus">
+      <a href="recommend.html" class="active">추천</a>
+      <a href="#">분류</a><a href="#">랭킹</a><a href="#">매거진</a><a href="#">더보기</a>
+    </nav>
+    <div class="header-right">
+      <div class="search-bar"><input type="text" placeholder="검색하세요"><span>🔍</span></div>
+      <a href="login.html" class="login-btn">로그인</a>
+    </div>
+  </header>
+
+  <div class="magazine-hero">
+    <h2>Let me share my story</h2>
+    <p>서로 다른 이야기</p>
+  </div>
+
+  <div class="category-box-container">
+    <div class="category-wrapper">
+      <div class="category-item">
+        <strong>인기 20</strong>
+      </div>
+      <div class="category-item">
+        <strong>레시피</strong>
+      </div>
+      <div class="category-item">
+        <strong>생활 건강 꿀팁</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <section class="section-group">
+      <div class="section-title"><h3>Different Stories</h3></div>
+      <div class="grid-3">
+        <div class="m-card">
+          <div class="m-img" style="background-image: url('https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg')"></div>
+          <h4 class="m-title">채식으로 바꾼 나의 건강한 일주일</h4>
+          <p class="m-desc">식단의 변화가 가져온 몸의 활력과 긍정적인 마음가짐을 기록했습니다.</p>
+        </div>
+        <div class="m-card">
+          <div class="m-img" style="background-image: url('https://images.pexels.com/photos/1051838/pexels-photo-1051838.jpeg')"></div>
+          <h4 class="m-title">아침 공기가 주는 평온한 명상의 시간</h4>
+          <p class="m-desc">새벽 6시, 따뜻한 차와 함께 나를 마주하는 귀중한 순간들.</p>
+        </div>
+        <div class="m-card">
+          <div class="m-img" style="background-image: url('https://images.pexels.com/photos/4056723/pexels-photo-4056723.jpeg')"></div>
+          <h4 class="m-title">부엌 인테리어가 요리 습관을 바꿉니다</h4>
+          <p class="m-desc">정갈하게 정리된 주방이 주는 정서적 안정과 요리의 즐거움.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; Healthy Recipes. All stories are for your healthy life.</p>
+  </footer>
+
+</body>
+</html>

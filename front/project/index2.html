@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Healthy Recipes</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Malgun Gothic", sans-serif; }
+    body { 
+      background-color: #dbdbdb; 
+      display: flex; justify-content: center; align-items: center; 
+      min-height: 100vh; padding: 20px;
+    }
+
+    .auth-container {
+      background-color: #fff;
+      width: 100%;
+      max-width: 450px;
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+      padding: 60px 45px;
+      text-align: center;
+    }
+
+    /* 로고 가독성 최적화 */
+    .auth-logo {
+      display: flex; flex-direction: column; align-items: center;
+      margin-bottom: 45px;
+      text-decoration: none; color: #333;
+    }
+    .auth-logo h1 { 
+      font-size: 34px; font-weight: 900; font-style: italic; 
+      letter-spacing: -1.5px; margin-bottom: 10px;
+    }
+    .auth-logo span { 
+      font-size: 12px; font-weight: 600; color: #999; 
+      letter-spacing: 4px; text-transform: uppercase; 
+      position: relative; padding-top: 10px;
+    }
+    .auth-logo span::before {
+      content: ""; position: absolute; top: 0; left: 50%; 
+      transform: translateX(-50%); width: 30px; height: 2px; background-color: #eee;
+    }
+
+    /* 카카오 로그인 (주력) */
+    .kakao-login-btn {
+      display: flex; align-items: center; justify-content: center;
+      width: 100%; height: 55px;
+      background-color: #FEE500;
+      color: #3C1E1E;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 15px;
+      transition: opacity 0.2s;
+    }
+    .kakao-login-btn:hover { opacity: 0.9; }
+    .kakao-icon { margin-right: 10px; font-weight: 900; }
+
+    /* 보조 소셜 버튼 (네이버 추가) */
+    .other-socials {
+      display: flex; justify-content: center; gap: 15px; margin-bottom: 30px;
+    }
+    .social-circle {
+      width: 45px; height: 45px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none; font-size: 16px; font-weight: 900;
+      border: 1px solid #eee; transition: transform 0.2s;
+    }
+    .social-circle:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    
+    .naver { background-color: #03C75A; color: #fff; border: none; font-size: 18px; } /* 네이버 그린 */
+    .google { color: #EA4335; background-color: #fff; }
+    .facebook { background-color: #1877F2; color: #fff; border: none; }
+
+    .divider {
+      margin: 30px 0; height: 1px; background: #eee;
+      position: relative;
+    }
+    .divider::after {
+      content: "일반 로그인"; position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%); background: #fff;
+      padding: 0 15px; color: #bbb; font-size: 12px;
+    }
+
+    /* 일반 로그인 폼 */
+    .form-group { margin-bottom: 12px; }
+    .form-group input {
+      width: 100%; height: 52px; padding: 0 15px;
+      border: 1px solid #e5e5e5; border-radius: 10px;
+      outline: none; font-size: 14px; background-color: #fcfcfc;
+      transition: border-color 0.3s;
+    }
+    .form-group input:focus { border-color: #333; background-color: #fff; }
+
+    .btn-login {
+      width: 100%; height: 55px; background-color: #333;
+      color: #fff; border: none; border-radius: 10px;
+      font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 5px;
+      transition: background 0.3s;
+    }
+    .btn-login:hover { background-color: #000; }
+
+    /* 하단 유틸리티 영역 (수정됨) */
+    .auth-footer { 
+      margin-top: 30px; 
+      display: flex; flex-direction: column; gap: 15px;
+      font-size: 14px; color: #888; 
+    }
+    .auth-footer .find-links {
+      display: flex; justify-content: center; gap: 10px;
+    }
+    .auth-footer a { color: #666; text-decoration: none; transition: color 0.2s; }
+    .auth-footer a:hover { color: #000; text-decoration: underline; }
+    
+    .btn-signup-link {
+      font-weight: bold; color: #333 !important; font-size: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="auth-container">
+    <a href="index.html" class="auth-logo">
+      <h1>Healthy Recipes</h1>
+      <span>home-cooked meal</span>
+    </a>
+
+    <a href="#" class="kakao-login-btn">
+      <span class="kakao-icon">TALK</span> 카카오 계정으로 로그인
+    </a>
+
+    <div class="other-socials">
+      <a href="#" class="social-circle naver" title="네이버 로그인">N</a>
+      <a href="#" class="social-circle google" title="구글 로그인">G</a>
+      <a href="#" class="social-circle facebook" title="페이스북 로그인">f</a>
+    </div>
+
+    <div class="divider"></div>
+
+    <form>
+      <div class="form-group">
+        <input type="email" placeholder="이메일 주소" required>
+      </div>
+      <div class="form-group">
+        <input type="password" placeholder="비밀번호" required>
+      </div>
+      <button type="submit" class="btn-login">로그인</button>
+    </form>
+
+    <div class="auth-footer">
+      <div class="find-links">
+        <a href="#">아이디 찾기</a>
+        <span>|</span>
+        <a href="#">비밀번호 찾기</a>
+      </div>
+      <div>
+        아직 회원이 아니신가요? <a href="#" class="btn-signup-link">회원가입</a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

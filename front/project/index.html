@@ -1,67 +1,380 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        .topmenu {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px;
-            border: 1px solid black;
-        }
-        .menus {
-            display: flex;
-            gap: 20px;
-        }
-        .right_menu {
-            display: flex;
-            gap: 20px;
-        }
-        .search {
-            width: 100px;
-            height: 30px;
-            background-color: khaki;
-        }
-        .icon {
-            width: 30px;
-            height: 30px;
-            background-color: grey;
-            border-radius: 50%;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Healthy Recipes</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Malgun Gothic", sans-serif; }
+    body { background-color: #dbdbdb; color: #333; overflow-x: hidden; }
+
+    .img-box {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: #eee;
+    }
+
+    /* ================= HEADER ================= */
+    header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 60px; background-color: #dbdbdb;
+    }
+    
+    .logo { 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center;    
+      text-align: center;     
+      line-height: 1.1; 
+    }
+    .logo h1 { 
+      font-size: 24px; 
+      font-weight: 900; 
+      font-style: italic; 
+      margin-bottom: 2px;     
+    }
+    .logo span { 
+      font-size: 13px;        
+      font-weight: 300; 
+      color: #777; 
+      letter-spacing: 2px;    
+      text-transform: uppercase; 
+    }
+
+    nav.menus { display: flex; gap: 20px; }
+    nav.menus a { text-decoration: none; color: #000; font-size: 13px; font-weight: bold; }
+    
+    /* 검색바 & 로그인 버튼 영역 */
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 15px; /* 검색창과 로그인 버튼 사이 간격 */
+    }
+
+    .search-bar { 
+      background: #fff; 
+      border-radius: 20px; 
+      padding: 8px 18px; 
+      border: 1px solid #ccc; 
+      display: flex; 
+      align-items: center; 
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .search-bar input { 
+      border: none; 
+      background: transparent; 
+      outline: none; 
+      width: 180px; 
+      font-size: 13px;
+    }
+
+    /* 로그인 버튼 스타일 */
+    .login-btn {
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: bold;
+      color: #fff;
+      background-color: #333;
+      padding: 8px 20px;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+    .login-btn:hover {
+      background-color: #555;
+      transform: translateY(-1px);
+    }
+
+    /* ================= HERO (슬라이드 기능) ================= */
+    .hero { position: relative; height: 450px; margin: 0 60px; overflow: hidden; border-radius: 15px; }
+    .hero-slider {
+      display: flex;
+      width: 300%; 
+      height: 100%;
+      transition: transform 1s ease-in-out; 
+    }
+    .slide-group {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      gap: 0; 
+    }
+    .hero-bg-item { flex: 1; height: 100%; }
+
+    .hero-content {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      background-color: rgba(241, 241, 241, 0.9); padding: 40px 60px; border-radius: 15px;
+      text-align: center; z-index: 10; width: 450px; border: 1px solid #ccc;
+    }
+    .hero-content h2 { font-size: 22px; margin-bottom: 15px; font-style: italic; font-weight: 900; }
+    .hero-content p { font-size: 14px; color: #555; font-weight: bold; }
+
+    /* ================= MENU GRID ================= */
+    .section-container { padding: 40px 60px; }
+    .section-header { margin-bottom: 30px; }
+    .section-header h3 { font-size: 18px; font-style: italic; background: #fff; display: inline-block; padding: 5px 20px; border-radius: 20px; margin-bottom: 10px; }
+    
+    .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+    .menu-card { position: relative; }
+    .menu-title { position: absolute; top: 20px; left: 20px; z-index: 5; font-weight: 900; font-size: 20px; color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+    .menu-layout { display: flex; gap: 10px; height: 350px; }
+    .menu-main { flex: 2; border-radius: 12px; }
+    .menu-sub { flex: 0.8; display: flex; flex-direction: column; gap: 10px; }
+    .menu-sub-item { flex: 1; border-radius: 12px; }
+
+    /* ================= CHEF SECTION ================= */
+    .chef-section { background-color: #eee; padding: 60px 60px; margin-top: 40px; }
+    .chef-section h3 { font-size: 20px; margin-bottom: 30px; font-weight: 900; }
+
+    .chef-list { 
+      display: flex; align-items: center; gap: 45px; overflow-x: auto; 
+      padding: 10px 0 35px 0;
+    }
+    .chef-list::-webkit-scrollbar { height: 5px; }
+    .chef-list::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
+
+    .chef-item { display: inline-flex; align-items: center; gap: 18px; flex-shrink: 0; }
+    .chef-circle { width: 75px; height: 75px; border-radius: 50%; flex-shrink: 0; border: 3px solid #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.08); }
+
+    .chef-info { 
+      display: flex; 
+      flex-direction: column; 
+      gap: 10px;              
+    }
+
+    .chef-name { font-size: 15px; font-weight: bold; color: #333; }
+    .subscribe-btn { 
+      font-size: 11px; 
+      padding: 6px 14px; 
+      background: #333; 
+      color: #fff; 
+      border: none; 
+      border-radius: 20px; 
+      cursor: pointer; 
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+    .subscribe-btn:hover { background: #555; transform: translateY(-1px); }
+
+    /* ================= FOOTER ================= */
+    footer { 
+      text-align: center; 
+      padding: 100px 20px; 
+      background-color: #dbdbdb; 
+    }
+
+    footer p { 
+      font-size: 16px; 
+      color: #555; 
+      margin-bottom: 30px; 
+      font-weight: bold;
+    }
+
+    .pride-btn { 
+      padding: 16px 50px; 
+      background-color: #333; 
+      color: #fff; 
+      font-size: 15px;
+      font-weight: 900; 
+      border-radius: 40px; 
+      border: none; 
+      cursor: pointer; 
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .pride-btn:hover { 
+      background-color: #555; 
+      transform: translateY(-3px); 
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="topmenu">
-            <div>
-                <p>Healthy Recipes</p>
-                <p>Home-cooked meal</p>
-            </div>
-            <div class="menus">
-                <div><a>추천</a></div>
-                <div><a>분류</a></div>
-                <div><a>랭킹</a></div>
-                <div><a>매거진</a></div>
-                <div><a>더보기</a></div>
-            </div>
-            <div class="right_menu">
-                <div class="search"></div>
-                <div class="icon"></div>
-                <div class="icon"></div>
-                <div class="icon"></div>
-            </div>
-        </div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+
+  <header>
+    <div class="logo">
+      <h1>Healthy Recipes</h1>
+      <span>home-cooked meal</span>
     </div>
+
+    <nav class="menus">
+      <a href="#">추천</a>
+      <a href="#">분류</a>
+      <a href="#">랭킹</a>
+      <a href="#">매거진</a>
+      <a href="#">더보기</a>
+    </nav>
+
+    <div class="header-right">
+      <div class="search-bar">
+        <input type="text" placeholder="요리 또는 재료를 검색하세요">
+        <span>🔍</span>
+      </div>
+      <a href="login.html" class="login-btn">로그인</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-slider" id="heroSlider">
+      <div class="slide-group">
+        <div class="hero-bg-item img-box" style="background-image: url('https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg')"></div>
+        <div class="hero-bg-item img-box" style="background-image: url('https://images.pexels.com/photos/1192030/pexels-photo-1192030.jpeg')"></div>
+      </div>
+      <div class="slide-group">
+        <div class="hero-bg-item img-box" style="background-image: url('https://images.pexels.com/photos/616483/pexels-photo-616483.jpeg')"></div>
+        <div class="hero-bg-item img-box" style="background-image: url('https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg')"></div>
+      </div>
+      <div class="slide-group">
+        <div class="hero-bg-item img-box" style="background-image: url('https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg')"></div>
+        <div class="hero-bg-item img-box" style="background-image: url('https://images.pexels.com/photos/704971/pexels-photo-704971.jpeg')"></div>
+      </div>
+    </div>
+    <div class="hero-content">
+      <h2>Don't give up on your health!</h2>
+      <p>건강한 식단이 오늘보다<br>내일 너를 더 건강하게 해줄 거야.</p>
+    </div>
+  </section>
+
+  <section class="section-container">
+    <div class="section-header">
+      <h3>The entire table menu</h3>
+      <p>보기도 좋고, 몸에도 좋은 나의 완벽한 한상차림</p>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <div class="menu-title">전체요리</div>
+        <div class="menu-layout">
+          <div class="menu-main img-box" style="background-image: url('https://images.pexels.com/photos/2097090/pexels-photo-2097090.jpeg')"></div>
+          <div class="menu-sub">
+            <div class="menu-sub-item img-box" style="background-image: url('https://images.pexels.com/photos/1213710/pexels-photo-1213710.jpeg')"></div>
+            <div class="menu-sub-item img-box" style="background-image: url('https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg')"></div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-title">메인요리</div>
+        <div class="menu-layout">
+          <div class="menu-main img-box" style="background-image: url('https://images.pexels.com/photos/769289/pexels-photo-769289.jpeg')"></div>
+          <div class="menu-sub">
+            <div class="menu-sub-item img-box" style="background-image: url('https://images.pexels.com/photos/262959/pexels-photo-262959.jpeg')"></div>
+            <div class="menu-sub-item img-box" style="background-image: url('https://images.pexels.com/photos/675951/pexels-photo-675951.jpeg')"></div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-title">디저트</div>
+        <div class="menu-layout">
+          <div class="menu-main img-box" style="background-image: url('https://images.pexels.com/photos/1126354/pexels-photo-1126354.jpeg')"></div>
+          <div class="menu-sub">
+            <div class="menu-sub-item img-box" style="background-image: url('https://images.pexels.com/photos/1055272/pexels-photo-1055272.jpeg')"></div>
+            <div class="menu-sub-item img-box" style="background-image: url('https://images.pexels.com/photos/2144112/pexels-photo-2144112.jpeg')"></div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-title">홈카페</div>
+        <div class="menu-layout">
+          <div class="menu-main img-box" style="background-image: url('https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg')"></div>
+          <div class="menu-sub">
+            <div class="menu-sub-item img-box" style="background-image: url('https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg')"></div>
+            <div class="menu-sub-item img-box" style="background-image: url('https://images.pexels.com/photos/851555/pexels-photo-851555.jpeg')"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chef-section">
+    <h3>쉐프 소개</h3>
+    <div class="chef-list">
+      <div class="chef-item">
+        <div class="chef-circle img-box" style="background-image: url('https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg')"></div>
+        <div class="chef-info">
+          <span class="chef-name">짱구</span>
+          <button class="subscribe-btn">구독하기</button>
+        </div>
+      </div>
+      <div class="chef-item">
+        <div class="chef-circle img-box" style="background-image: url('https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg')"></div>
+        <div class="chef-info">
+          <span class="chef-name">도라에몽</span>
+          <button class="subscribe-btn">구독하기</button>
+        </div>
+      </div>
+      <div class="chef-item">
+        <div class="chef-circle img-box" style="background-image: url('https://images.pexels.com/photos/1559486/pexels-photo-1559486.jpeg')"></div>
+        <div class="chef-info">
+          <span class="chef-name">피카츄</span>
+          <button class="subscribe-btn">구독하기</button>
+        </div>
+      </div>
+      <div class="chef-item">
+        <div class="chef-circle img-box" style="background-image: url('https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg')"></div>
+        <div class="chef-info">
+          <span class="chef-name">철수</span>
+          <button class="subscribe-btn">구독하기</button>
+        </div>
+      </div>
+      <div class="chef-item">
+        <div class="chef-circle img-box" style="background-image: url('https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg')"></div>
+        <div class="chef-info">
+          <span class="chef-name">유리</span>
+          <button class="subscribe-btn">구독하기</button>
+        </div>
+      </div>
+      <div class="chef-item">
+        <div class="chef-circle img-box" style="background-image: url('https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg')"></div>
+        <div class="chef-info">
+          <span class="chef-name">맹구</span>
+          <button class="subscribe-btn">구독하기</button>
+        </div>
+      </div>
+      <div class="chef-item">
+        <div class="chef-circle img-box" style="background-image: url('https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg')"></div>
+        <div class="chef-info">
+          <span class="chef-name">둘리</span>
+          <button class="subscribe-btn">구독하기</button>
+        </div>
+      </div>
+      <div class="chef-item">
+        <div class="chef-circle img-box" style="background-image: url('https://images.pexels.com/photos/1845531/pexels-photo-1845531.jpeg')"></div>
+        <div class="chef-info">
+          <span class="chef-name">포로리</span>
+          <button class="subscribe-btn">구독하기</button>
+        </div>
+      </div>
+      <div class="chef-item">
+        <div class="chef-circle img-box" style="background-image: url('https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg')"></div>
+        <div class="chef-info">
+          <span class="chef-name">케로로</span>
+          <button class="subscribe-btn">구독하기</button>
+        </div>
+      </div>
+      <div class="chef-item">
+        <div class="chef-circle img-box" style="background-image: url('https://images.pexels.com/photos/1212984/pexels-photo-1212984.jpeg')"></div>
+        <div class="chef-info">
+          <span class="chef-name">코로스케</span>
+          <button class="subscribe-btn">구독하기</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>오늘도 나를 사랑하며, 예쁘게 먹었어요.</p>
+    <button class="pride-btn">자랑 타임</button>
+  </footer>
+
+  <script>
+    const slider = document.getElementById('heroSlider');
+    let currentIndex = 0;
+    const totalSlides = 3; 
+
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % totalSlides;
+      slider.style.transform = `translateX(-${(currentIndex * 100) / totalSlides}%)`;
+    }, 15000); 
+  </script>
 </body>
 </html>
